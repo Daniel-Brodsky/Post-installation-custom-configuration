@@ -64,14 +64,22 @@ echo "Dark mode set!"
 echo "If you see errors here - the lines before this are for KDE tweaking -  it is possible that this isn't a KDE enviroment"
 
 # 8. Set Up Aliases and Functions
-echo "Adding handy aliases and functions..."
-cat <<EOL >> ~/.bashrc
+
+# Determine the appropriate shell configuration file
+if [ "$(echo $SHELL)" = "/bin/zsh" ]; then
+    CONFIG_FILE="$HOME/.zshrc"
+else
+    CONFIG_FILE="$HOME/.bashrc"
+fi
+
+# Add custom aliases and functions to the shell configuration file
+cat <<EOL >> $CONFIG_FILE
 
 # Custom Aliases
 alias update='sudo apt update && sudo apt upgrade -y'
 alias cls='clear'
 alias lsa='ls -a'
-alias edit-bashrc='nano ~/.bashrc && source ~/.bashrc'
+alias edit-config='nano $CONFIG_FILE && source $CONFIG_FILE'
 
 # Pentesting Quick Tools
 alias scan='sudo tcpdump -i eth0 -s 65535 -w ./scan.pcap && echo "Captured packets saved to ./scan.pcap for Wireshark analysis."'
@@ -81,8 +89,11 @@ function sniff() {
 }
 EOL
 
-# Reload bashrc
-source ~/.bashrc
+# Reload the configuration file to apply changes
+source $CONFIG_FILE
+
+echo "Configuration updated for $(basename $SHELL). Aliases and functions are now active."
+
 
 # Final Message
 echo "The custom script finished!"
