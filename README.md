@@ -12,3 +12,5 @@ I had a script that handled `apt update` and `upgrade` in a one-liner that inspi
 ```bash
 chmod +x ./Post\ installation\ custom\ configuration.sh && ./Post\ installation\ custom\ configuration.sh
 ```
+
+note: The script now supports zsh and Bash according to the output of `echo $SHELL` system variable.
