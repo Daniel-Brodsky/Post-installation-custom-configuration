@@ -48,7 +48,7 @@ sudo snap install metasploit-framework
 
 # 5. Install Burp Suite
 echo "Installing Burp Suite..."
-wget https://portswigger.net/burp/releases/download?product=community&version=2023.1&type=Linux -O burpsuite.sh
+wget "https://portswigger.net/burp/releases/download?product=community&type=Linux" -O burpsuite.sh
 chmod +x burpsuite.sh
 ./burpsuite.sh
 
